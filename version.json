@@ -5,7 +5,7 @@
   "dependencies": {
     "local-setup": "https://github.com/PredixDev/local-setup#1.0.79",
     "Predix-HelloWorld-WebApp": "https://github.com/PredixDev/Predix-HelloWorld-WebApp.git#1.1.134",
-    "predix-scripts": "https://github.com/PredixDev/predix-scripts#1.1.125",
+    "predix-scripts": "https://github.com/PredixDev/predix-scripts#1.1.128",
     "predix-mobile-starter": "https://github.com/PredixDev/predix-mobile-starter.git#"
   },
   "author": "gedesigntech"

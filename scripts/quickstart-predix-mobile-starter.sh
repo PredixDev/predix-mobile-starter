@@ -41,7 +41,7 @@ PRINT_USAGE=0
 SKIP_SETUP=false
 #ASSET_MODEL="-amrmd predix-ui-seed/server/sample-data/predix-asset/asset-model-metadata.json predix-ui-seed/server/sample-data/predix-asset/asset-model.json"
 SCRIPT="-script build-basic-app.sh -script-readargs build-basic-app-readargs.sh"
-QUICKSTART_ARGS="-uaa -mobile -mobile-ref-app -ms $SCRIPT"
+QUICKSTART_ARGS="-pxclimin 0.6.32 -uaa -mobile -mobile-ref-app -ms $SCRIPT"
 VERSION_JSON="version.json"
 PREDIX_SCRIPTS=predix-scripts
 REPO_NAME=predix-mobile-starter
@@ -86,6 +86,7 @@ function init() {
   check_internet
 
   #get the script that reads version.json
+  echo "load $IZON_SH"
   eval "$(curl -s -L $IZON_SH)"
 
   getVersionFile
@@ -114,6 +115,6 @@ source $PREDIX_SCRIPTS/bash/quickstart.sh $QUICKSTART_ARGS
 
 __append_new_line_log "Successfully completed $APP_NAME installation!" "$quickstartLogDir"
 __append_new_line_log "" "$quickstartLogDir"
-__append_new_line_log "Your mobile service and UAA services are now setup! You can learn how to use these services and run a working Android application by checking out the following guide: https://stage.predix.io/resources/tutorials/journey.html#2433" "$quickstartLogDir"
+__append_new_line_log "Your mobile service and UAA services are now setup! You can learn how to use these services and run a working Android application by checking out the following guide: https://predix.io/resources/tutorials/journey.html#2433" "$quickstartLogDir"
 
 __append_new_line_log "" "$quickstartLogDir"

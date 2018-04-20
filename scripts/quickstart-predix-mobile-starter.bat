@@ -35,12 +35,12 @@ IF [!BRANCH!]==[] (
 
 SET IZON_BAT=https://raw.githubusercontent.com/PredixDev/izon/!BRANCH!/izon.bat
 SET TUTORIAL=https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=1475^&tag^=1719^&journey^=Predix%%20UI%%20Seed^&resources^=1475,1569,1523
-SET REPO_NAME=predix-webapp-starter
-SET SHELL_SCRIPT_NAME=quickstart-predix-webapp-starter.sh
-SET APP_DIR="webapp-starter"
-SET APP_NAME=Predix WebApp Starter
+SET REPO_NAME=predix-mobile-starter
+SET SHELL_SCRIPT_NAME=quickstart-predix-mobile-starter.sh
+SET APP_DIR="mobile-starter"
+SET APP_NAME=Predix Mobile Starter
 SET TOOLS=Cloud Foundry CLI, Git, Node.js, Predix CLI, Android Studio
-SET TOOLS_SWITCHES=/cf /git /nodejs /predixcli /androidstudio
+SET TOOLS_SWITCHES=/cf /git /nodejs /predixcli /androidstudio /mobilecli
 
 SET SHELL_SCRIPT_URL=https://raw.githubusercontent.com/PredixDev/!REPO_NAME!/!BRANCH!/scripts/!SHELL_SCRIPT_NAME!
 SET VERSION_JSON_URL=https://raw.githubusercontent.com/PredixDev/!REPO_NAME!/!BRANCH!/version.json
@@ -54,6 +54,15 @@ GOTO START
     ECHO Exiting tutorial.  Looks like you are in the system32 directory, please change directories, e.g. \Users\your-login-name
     EXIT /b 1
   )
+GOTO :eof
+
+:DOWNLOAD_TO_FILE 
+  ECHO download to file
+  ECHO %~1 %~2
+  REM @powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $response = iwr -uri https://api.github.com/repos/PredixDev/predix-cli/releases; write-output $response.Content | Out-File releaseresponse.tmp ASCII -Width 9999"
+  REM arg1 is URL, arg2 is filename to redirect output to
+  @powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $response = iwr -uri %~1; write-output $response.Content | Out-File %~2 ASCII -Width 9999"
+  CALL :CHECK_FAIL    
 GOTO :eof
 
 :CHECK_FAIL
@@ -130,15 +139,15 @@ GOTO :eof
 :GET_DEPENDENCIES
   ECHO Getting Dependencies
 
-  powershell -Command "(new-object net.webclient).DownloadFile('!IZON_BAT!','izon.bat')"
-  powershell -Command "(new-object net.webclient).DownloadFile('!VERSION_JSON_URL!','version.json')"
+  CALL :DOWNLOAD_TO_FILE !IZON_BAT! , izon.bat
+  CALL :DOWNLOAD_TO_FILE !VERSION_JSON_URL! , version.json
+
   CALL izon.bat READ_DEPENDENCY local-setup LOCAL_SETUP_URL LOCAL_SETUP_BRANCH %cd%
   ECHO "LOCAL_SETUP_BRANCH=!LOCAL_SETUP_BRANCH!"
   SET SETUP_WINDOWS=https://raw.githubusercontent.com/PredixDev/local-setup/!LOCAL_SETUP_BRANCH!/setup-windows.bat
   rem SET SETUP_WINDOWS=https://raw.githubusercontent.com/PredixDev/local-setup/!LOCAL_SETUP_BRANCH!/setup-windows.bat
 
-  ECHO !SETUP_WINDOWS!
-  powershell -Command "(new-object net.webclient).DownloadFile('!SETUP_WINDOWS!','setup-windows.bat')"
+  CALL :DOWNLOAD_TO_FILE !SETUP_WINDOWS! , setup-windows.bat
 
 GOTO :eof
 
@@ -167,7 +176,8 @@ if !CF_URL!=="" (
   cf login -a !CF_URL! -u !CF_USER! -p !CF_PASSWORD! -o !CF_ORG! -s !CF_SPACE!
 )
 
-powershell -Command "(new-object net.webclient).DownloadFile('!SHELL_SCRIPT_URL!','!CURRENTDIR!\!SHELL_SCRIPT_NAME!')"
+CALL :DOWNLOAD_TO_FILE !SHELL_SCRIPT_URL! , !CURRENTDIR!\!SHELL_SCRIPT_NAME!
+
 ECHO Running the !CURRENTDIR!\%SHELL_SCRIPT_NAME% script using Git-Bash
 cd !CURRENTDIR!
 ECHO.

@@ -1,10 +1,10 @@
 {
   "name": "Predix Mobile Starter",
-  "version": "1.0.31",
+  "version": "1.0.33",
   "private": true,
   "dependencies": {
-    "local-setup": "https://github.com/PredixDev/local-setup#1.0.90",
-    "predix-scripts": "https://github.com/PredixDev/predix-scripts#1.1.138",
+    "local-setup": "https://github.com/PredixDev/local-setup#1.0.91",
+    "predix-scripts": "https://github.com/PredixDev/predix-scripts#1.1.139",
     "predix-mobile-starter": "https://github.com/PredixDev/predix-mobile-starter.git#",
     "predix-mobile-webapp": "https://github.com/PredixDev/MobileExample-WebApp-Sample.git#"
   },

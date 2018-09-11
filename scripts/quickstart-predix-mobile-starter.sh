@@ -90,6 +90,7 @@ function init() {
   eval "$(curl -s -L $IZON_SH)"
 
   getVersionFile
+  getProxyScripts
   getLocalSetupFuncs
 }
 

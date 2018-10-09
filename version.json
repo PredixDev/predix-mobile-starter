@@ -1,11 +1,11 @@
 {
   "name": "Predix Mobile Starter",
-  "version": "1.0.38",
+  "version": "1.0.41",
   "private": true,
   "dependencies": {
     "local-setup": "https://github.com/PredixDev/local-setup#1.0.101",
-    "predix-scripts": "https://github.com/PredixDev/predix-scripts#1.1.158",
-    "predix-mobile-starter": "https://github.com/PredixDev/predix-mobile-starter.git#1.0.38",
+    "predix-scripts": "https://github.com/PredixDev/predix-scripts#1.1.171",
+    "predix-mobile-starter": "https://github.com/PredixDev/predix-mobile-starter.git#1.0.41",
     "predix-mobile-webapp": "https://github.com/PredixDev/MobileExample-WebApp-Sample.git#"
   },
   "author": "gedesigntech"

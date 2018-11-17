@@ -122,7 +122,6 @@ getCurrentRepo
 echo "quickstart_args=$QUICKSTART_ARGS"
 source $PREDIX_SCRIPTS/bash/quickstart.sh $QUICKSTART_ARGS
 
-
 __append_new_line_log "Successfully completed $APP_NAME installation!" "$quickstartLogDir"
 __append_new_line_log "" "$quickstartLogDir"
 __append_new_line_log "Your mobile service and UAA services are now setup! You can learn how to use these services and run a working Android application by checking out the following guide: https://predix.io/resources/tutorials/journey.html#2433" "$quickstartLogDir"
